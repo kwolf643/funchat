@@ -20,7 +20,7 @@
   </resultMap>
 
   <select id="selectByFriendId" parameterType="java.lang.Integer" resultMap="BaseResultMapUser">
-    select u.*
+    select u.id,u.username,u.icon,u.per_signature
     from friend f,fun_user u
     where f.friendA_id = #{id,jdbcType=INTEGER} and f.friendB_id = u.id
     or f.friendB_id = #{id,jdbcType=INTEGER} and f.friendA_id = u.id

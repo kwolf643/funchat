@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -750,246 +750,32 @@
                 </form>
                 <div class="sidebar-body">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
-                                    <img src="./media/img/women_avatar5.jpg" class="rounded-circle">
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>Harrietta Souten</h5>
-                                <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">Open</a>
-                                            <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
-                                            <a href="#" class="dropdown-item">Add to archive</a>
-                                            <a href="#" class="dropdown-item">Delete</a>
+                        <tr th:each="user : ${users}">
+                            <li class="list-group-item">
+                                <div>
+                                    <figure class="avatar">
+                                        <img th:src="${user.icon}" class="rounded-circle" alt="头像">
+                                    </figure>
+                                </div>
+                                <div class="users-list-body">
+                                    <h5><td  th:text="${user.username}"></h5>
+                                    <p><td  th:text="${user.perSignature}"></p>
+                                    <div class="users-list-action action-toggle">
+                                        <div class="dropdown">
+                                            <a data-toggle="dropdown" href="#">
+                                                <i class="ti-more"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a href="#" class="dropdown-item">Open</a>
+                                                <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
+                                                <a href="#" class="dropdown-item">Add to archive</a>
+                                                <a href="#" class="dropdown-item">Delete</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
-                                    <span class="avatar-title bg-success rounded-circle">A</span>
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>Aline McShee</h5>
-                                <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">Open</a>
-                                            <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
-                                            <a href="#" class="dropdown-item">Add to archive</a>
-                                            <a href="#" class="dropdown-item">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
-                                    <img src="./media/img/women_avatar1.jpg" class="rounded-circle">
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>Brietta Blogg</h5>
-                                <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">Open</a>
-                                            <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
-                                            <a href="#" class="dropdown-item">Add to archive</a>
-                                            <a href="#" class="dropdown-item">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
-                                    <img src="./media/img/man_avatar3.jpg" class="rounded-circle">
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>Karl Hubane</h5>
-                                <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">Open</a>
-                                            <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
-                                            <a href="#" class="dropdown-item">Add to archive</a>
-                                            <a href="#" class="dropdown-item">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
-                                    <img src="./media/img/man_avatar2.jpg" class="rounded-circle">
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>Jillana Tows</h5>
-                                <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">Open</a>
-                                            <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
-                                            <a href="#" class="dropdown-item">Add to archive</a>
-                                            <a href="#" class="dropdown-item">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
-                                    <span class="avatar-title bg-info rounded-circle">AD</span>
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>Alina Derington</h5>
-                                <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">Open</a>
-                                            <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
-                                            <a href="#" class="dropdown-item">Add to archive</a>
-                                            <a href="#" class="dropdown-item">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
-                                    <span class="avatar-title bg-warning rounded-circle">S</span>
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>Stevy Kermeen</h5>
-                                <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">Open</a>
-                                            <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
-                                            <a href="#" class="dropdown-item">Add to archive</a>
-                                            <a href="#" class="dropdown-item">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
-                                    <img src="./media/img/man_avatar1.jpg" class="rounded-circle">
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>Stevy Kermeen</h5>
-                                <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">Open</a>
-                                            <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
-                                            <a href="#" class="dropdown-item">Add to archive</a>
-                                            <a href="#" class="dropdown-item">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
-                                    <img src="./media/img/man_avatar5.jpg" class="rounded-circle">
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>Gloriane Shimmans</h5>
-                                <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">Open</a>
-                                            <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
-                                            <a href="#" class="dropdown-item">Add to archive</a>
-                                            <a href="#" class="dropdown-item">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
-                                    <span class="avatar-title bg-secondary rounded-circle">B</span>
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>Bernhard Perrett</h5>
-                                <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">Open</a>
-                                            <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
-                                            <a href="#" class="dropdown-item">Add to archive</a>
-                                            <a href="#" class="dropdown-item">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                            </li>
+                        </tr>
                     </ul>
                 </div>
             </div>

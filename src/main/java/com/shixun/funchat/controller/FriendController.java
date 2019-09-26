@@ -33,7 +33,7 @@ public class FriendController {
     private GroupService groupService;
 
     //跳转好友列表
-    @GetMapping("/listfriend")
+    @GetMapping("/index")
     public String toListfriend(Model model, HttpServletRequest request){
         HttpSession session=request.getSession();
         User user = (User) session.getAttribute("USER_SESSION");
@@ -41,6 +41,14 @@ public class FriendController {
         model.addAttribute("users",users);
 //        return "test_listfriend";
         return "index_qiaofeng";
+    }
+
+    //好友资料
+    @GetMapping("/friendinfo")
+    @ResponseBody
+    public User friendinfo(String username){
+        User user=friendService.friendinfo(username);
+        return user;
     }
 
     //批量删除好友
