@@ -43,9 +43,13 @@ public class FriendServiceImpl implements FriendService {
         friend.setFriendbId(user.getId());
         int state=friendMapper.deleteByPrimaryKey(friend);
         if (state !=0) {
-            return "删除了id为" + user1.getId() + "的好友！！";
+            log.debug("删除了id为" + user1.getId() + "的好友！！");
+            return "删除好友成功";
         }
-        else  return "id为" + user1.getId() + "的好友,删除失败！";
+        else {
+            log.debug("id为" + user1.getId() + "的好友,删除失败！");
+            return "删除好友失败";
+        }
     }
 
     //批量删除好友

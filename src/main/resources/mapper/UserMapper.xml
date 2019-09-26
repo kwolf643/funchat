@@ -36,8 +36,8 @@
   <select id="selectByMailOrName" parameterType="com.shixun.funchat.entity.User" resultMap="BaseResultMap">
     select u.id,u.username,u.mail,u.icon
     from fun_user u
-    where mail like concat(#{username,jdbcType=VARCHAR},'%')
-    or username like concat(#{username,jdbcType=VARCHAR},'%')
+    where mail like concat(#{username,jdbcType=VARCHAR},'%') and id != #{id,jdbcType=INTEGER}
+    or username like concat(#{username,jdbcType=VARCHAR},'%') and id != #{id,jdbcType=INTEGER}
   </select>
 
 <!--  根据用户名和密码登录-->

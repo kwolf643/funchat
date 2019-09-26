@@ -5,6 +5,7 @@ import com.shixun.funchat.entity.User;
 import com.shixun.funchat.service.FriendService;
 import com.shixun.funchat.service.GroupService;
 import com.shixun.funchat.service.UserService;
+import org.apache.catalina.Session;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -62,11 +65,14 @@ public class FriendController {
 
     //删除好友
     @GetMapping("/deleteFriend")
-    public String deleteFriend(String username, HttpServletRequest request) {
+    @ResponseBody
+    public Map<String, String> deleteFriend(@RequestBody String username, HttpServletRequest request) {
+        Map<String, String> map = new HashMap<>();
         HttpSession session=request.getSession();
         String msg = friendService.deleteFriend(username,session);
         log.debug(msg);
-        return "redirect:/listfriend";
+        map.put("msg",msg);
+        return map;
     }
 
     //跳转好友搜索和群搜索页面
@@ -76,10 +82,13 @@ public class FriendController {
     //实现添加好友搜索和群搜索
     @PostMapping("/search")
     @ResponseBody
-    public List<User> Search(@RequestBody User user, Model model){
+    public List<User> Search(@RequestBody User user,HttpServletRequest request){
 //        ChatGroup group = new ChatGroup();
 //        group.setGropId(user.getId());
 //        group.setGropName(user.getUsername());
+        HttpSession session=request.getSession();
+        User user1 = (User) session.getAttribute("USER_SESSION");
+        user.setId(user1.getId());
         if (StringUtils.isBlank(user.getUsername())) {
             user.setUsername("_?/");
             List<User> users = userService.search(user);
