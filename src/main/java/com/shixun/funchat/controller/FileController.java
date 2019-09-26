@@ -43,9 +43,9 @@ public class FileController {
 
         File file1 = new File("D:\\IDEA-workspace\\funchat\\fileupload\\"+user.getIcon());
         File dest = new File(realpath +"/"+ newFilename);//存储路径
-
+        log.debug(realpath +"/"+ newFilename);
         if(!dest.getParentFile().exists()){ //判断文件父目录是否存在
-            dest.getParentFile().mkdir();
+            dest.getParentFile().mkdirs();
         }
         try {
             file.transferTo(dest);//上传文件
