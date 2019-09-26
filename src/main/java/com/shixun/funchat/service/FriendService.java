@@ -16,4 +16,6 @@ public interface FriendService {
     String deleteFriend(String username, HttpSession session);
     //添加好友
     String addFriend(Integer id, HttpSession session);
+    //好友资料
+    User friendPersoanl(String username);
 }

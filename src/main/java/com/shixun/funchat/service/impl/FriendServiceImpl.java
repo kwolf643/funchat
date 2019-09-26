@@ -89,4 +89,11 @@ public class FriendServiceImpl implements FriendService {
         else return "该用户已经是你的好友";
     }
 
+    //好友资料
+    @Override
+    public User friendPersoanl(String username) {
+        User user = userMapper.CheckByName(username);
+        return user;
+    }
+
 }
