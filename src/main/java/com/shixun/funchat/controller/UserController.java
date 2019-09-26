@@ -66,13 +66,14 @@ public class UserController {
 
     //查看个人资料
     @GetMapping("/userinfo")
-    public String userinfo(Model model,HttpServletRequest request){
+    @ResponseBody
+    public User userinfo(Model model,HttpServletRequest request){
         HttpSession session=request.getSession();
         User user = (User) session.getAttribute("USER_SESSION");//从session中直接获得
 //        user = userService.userinfo(user);
         log.debug("查看个人资料用户: "+user.getUsername());
-        model.addAttribute("userinfo",user);
-        return "test_personal";
+//        model.addAttribute("userinfo",user);
+       return user;
     }
 
     //修改个人资料
