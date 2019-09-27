@@ -1,5 +1,8 @@
 package com.shixun.funchat.interceptor;
 
+import com.shixun.funchat.controller.UserController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -13,8 +16,9 @@ import java.util.List;
  * 登录拦截器
  */
 public class LoginInterceptor implements HandlerInterceptor {
+    private static Logger log = LoggerFactory.getLogger(LoginInterceptor.class);
 
-    private List<String> url = new ArrayList();
+    private List<String> url = new ArrayList<>();
 
     /**
      * 开始进入地址请求拦截
@@ -23,10 +27,18 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
         HttpSession session = request.getSession();
-        if(session.getAttribute("USER_SESSION") != null){
+        if (session.getAttribute("USER_SESSION") != null) {
+            //已登录
+            if (request.getRequestURI().equals("/login")) {
+                response.sendRedirect("/");
+                return false;
+            }
             return true;
-        }else{
-            response.sendRedirect("/login");	//未登录，跳转到登录页
+        } else {
+            //未登录
+            if (request.getRequestURI().equals("/login"))
+                return true;
+            response.sendRedirect("/login");
             return false;
         }
     }
@@ -37,7 +49,6 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
                            ModelAndView modelAndView) throws Exception {
-
     }
 
     /**
@@ -46,18 +57,16 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
             throws Exception {
-
     }
 
     /**
      * 定义排除拦截URL
-     * @return
+     *
+     * @return 排除拦截的 url
      */
-    public List<String> getUrl(){
-        url.add("/");           //主页
-        url.add("/login");      //登录页
-        url.add("/register");   //注册页
-        url.add("/error");
+    public List<String> getUrl() {
+        url.add("/UserControlPublic"); //用户控制-开放
+        url.add("/error");              //错误页面
 
         //网站静态资源
         url.add("/css/**");
@@ -69,6 +78,8 @@ public class LoginInterceptor implements HandlerInterceptor {
         url.add("/icons/**");
         url.add("/media/**");
         url.add("/*.html");
+
         return url;
     }
+
 }

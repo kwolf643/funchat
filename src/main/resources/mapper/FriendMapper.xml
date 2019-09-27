@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.shixun.funchat.entity.Friend">
     <id column="friendA_id" jdbcType="INTEGER" property="friendaId" />
     <id column="friendB_id" jdbcType="INTEGER" property="friendbId" />
+    <result column="accept" jdbcType="BIT" property="accept" />
   </resultMap>
 
   <resultMap id="BaseResultMapUser" type="com.shixun.funchat.entity.User">
@@ -19,30 +20,62 @@
     <result column="per_signature" jdbcType="VARCHAR" property="perSignature" />
   </resultMap>
 
-  <select id="selectByFriendId" parameterType="java.lang.Integer" resultMap="BaseResultMapUser">
-    select u.id,u.username,u.icon,u.per_signature
+  <sql id="Base_Column_List">
+    friendA_id, friendB_id, accept
+  </sql>
+  <sql id="Base_Column_List_My">
+    u.id, u.username, u.telephone, u.icon, u.geder, u.birthday, u.addr, u.mail, u.per_signature
+  </sql>
+
+  <!-- 已接受的好友-根据id关联查找fun_user表和friend表 -->
+  <select id="selectUserFriendsAccept" parameterType="java.lang.Integer" resultMap="BaseResultMapUser">
+    select
+    <include refid="Base_Column_List_My" />
     from friend f,fun_user u
-    where f.friendA_id = #{id,jdbcType=INTEGER} and f.friendB_id = u.id
-    or f.friendB_id = #{id,jdbcType=INTEGER} and f.friendA_id = u.id
+    where f.accept = 1 and
+    ((f.friendA_id = #{id,jdbcType=INTEGER} and f.friendB_id = u.id) or
+    (f.friendB_id = #{id,jdbcType=INTEGER} and f.friendA_id = u.id))
   </select>
 
-  <select id="selectByPrimaryKey" parameterType="com.shixun.funchat.entity.Friend" resultMap="BaseResultMap">
-    select *
+  <!-- 未接受的好友-根据id关联查找fun_user表和friend表 -->
+  <select id="selectUserFriendsNotAccept" parameterType="java.lang.Integer" resultMap="BaseResultMapUser">
+    select
+    <include refid="Base_Column_List_My" />
+    from friend f,fun_user u
+    where f.accept = 0 and f.friendA_id = #{id,jdbcType=INTEGER} and f.friendB_id = u.id
+  </select>
+
+  <!-- 好友请求-根据id关联查找fun_user表和friend表 -->
+  <select id="getUserWantFriends" parameterType="java.lang.Integer" resultMap="BaseResultMapUser">
+    select
+    <include refid="Base_Column_List_My" />
+    from friend f,fun_user u
+    where f.accept = 0 and f.friendB_id = #{id,jdbcType=INTEGER} and f.friendA_id = u.id
+  </select>
+
+  <!-- 自动生成 -->
+  <!-- 查询 -->
+  <select id="selectByPrimaryKey" parameterType="com.shixun.funchat.entity.FriendKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
     from friend
-    where friendA_id = #{friendaId,jdbcType=INTEGER} and friendB_id = #{friendbId,jdbcType=INTEGER}
-    or friendA_id = #{friendbId,jdbcType=INTEGER} and friendB_id = #{friendaId,jdbcType=INTEGER}
+    where friendA_id = #{friendaId,jdbcType=INTEGER}
+      and friendB_id = #{friendbId,jdbcType=INTEGER}
   </select>
-
-  <delete id="deleteByPrimaryKey" parameterType="com.shixun.funchat.entity.Friend">
+  <!-- 删除 -->
+  <delete id="deleteByPrimaryKey" parameterType="com.shixun.funchat.entity.FriendKey">
     delete from friend
-    where friendA_id = #{friendaId,jdbcType=INTEGER} and friendB_id = #{friendbId,jdbcType=INTEGER}
-    or friendA_id = #{friendbId,jdbcType=INTEGER} and friendB_id = #{friendaId,jdbcType=INTEGER}
+    where friendA_id = #{friendaId,jdbcType=INTEGER}
+      and friendB_id = #{friendbId,jdbcType=INTEGER}
   </delete>
-
+  <!-- 插入 -->
   <insert id="insert" parameterType="com.shixun.funchat.entity.Friend">
-    insert into friend (friendA_id, friendB_id)
-    values (#{friendaId,jdbcType=INTEGER}, #{friendbId,jdbcType=INTEGER})
+    insert into friend (friendA_id, friendB_id, accept
+      )
+    values (#{friendaId,jdbcType=INTEGER}, #{friendbId,jdbcType=INTEGER}, #{accept,jdbcType=BIT}
+      )
   </insert>
+  <!-- 选择性插入 -->
   <insert id="insertSelective" parameterType="com.shixun.funchat.entity.Friend">
     insert into friend
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -52,6 +85,9 @@
       <if test="friendbId != null">
         friendB_id,
       </if>
+      <if test="accept != null">
+        accept,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="friendaId != null">
@@ -60,6 +96,27 @@
       <if test="friendbId != null">
         #{friendbId,jdbcType=INTEGER},
       </if>
+      <if test="accept != null">
+        #{accept,jdbcType=BIT},
+      </if>
     </trim>
   </insert>
+  <!-- 选择性更新 -->
+  <update id="updateByPrimaryKeySelective" parameterType="com.shixun.funchat.entity.Friend">
+    update friend
+    <set>
+      <if test="accept != null">
+        accept = #{accept,jdbcType=BIT},
+      </if>
+    </set>
+    where friendA_id = #{friendaId,jdbcType=INTEGER}
+      and friendB_id = #{friendbId,jdbcType=INTEGER}
+  </update>
+  <!-- 更新 -->
+  <update id="updateByPrimaryKey" parameterType="com.shixun.funchat.entity.Friend">
+    update friend
+    set accept = #{accept,jdbcType=BIT}
+    where friendA_id = #{friendaId,jdbcType=INTEGER}
+      and friendB_id = #{friendbId,jdbcType=INTEGER}
+  </update>
 </mapper>

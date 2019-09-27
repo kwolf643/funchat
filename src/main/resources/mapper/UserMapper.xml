@@ -25,41 +25,54 @@
     and s.grop_id = #{grop_id,jdbcType=INTEGER}
   </select>
 
+  <!-- 选择性查询 -->
+  <select id="selectBySelective" parameterType="com.shixun.funchat.entity.User" resultMap="BaseResultMap">
+    select * from fun_user
+    <where>
+      <if test="username != null">
+        and username = #{username,jdbcType=VARCHAR}
+      </if>
+      <if test="password != null">
+        and password = #{password,jdbcType=VARCHAR}
+      </if>
+      <if test="telephone != null">
+        and telephone = #{telephone,jdbcType=DECIMAL}
+      </if>
+      <if test="icon != null">
+        and icon = #{icon,jdbcType=VARCHAR}
+      </if>
+      <if test="geder != null">
+        and geder = #{geder,jdbcType=CHAR}
+      </if>
+      <if test="birthday != null">
+        and birthday = #{birthday,jdbcType=DATE}
+      </if>
+      <if test="addr != null">
+        and addr = #{addr,jdbcType=VARCHAR}
+      </if>
+      <if test="mail != null">
+        and mail = #{mail,jdbcType=VARCHAR}
+      </if>
+      <if test="perSignature != null">
+        and per_signature = #{perSignature,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+
+  <!-- 自动生成 -->
+  <!-- 查找 -->
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from fun_user
     where id = #{id,jdbcType=INTEGER}
   </select>
-
-  <!--  根据用户名和邮箱进行查找-->
-  <select id="selectByMailOrName" parameterType="com.shixun.funchat.entity.User" resultMap="BaseResultMap">
-    select u.id,u.username,u.mail,u.icon
-    from fun_user u
-    where mail like concat(#{username,jdbcType=VARCHAR},'%') and id != #{id,jdbcType=INTEGER}
-    or username like concat(#{username,jdbcType=VARCHAR},'%') and id != #{id,jdbcType=INTEGER}
-  </select>
-
-<!--  根据用户名和密码登录-->
-  <select id="selectByName" parameterType="com.shixun.funchat.entity.User" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from fun_user
-    where username = #{username,jdbcType=VARCHAR}
-    and password = #{password,jdbcType=VARCHAR}
-  </select>
-
-  <!--  查找用户名是否已经存在-->
-  <select id="CheckByName" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select id, username, telephone, icon, geder, birthday, addr, mail, per_signature
-    from fun_user
-    where username = #{username,jdbcType=VARCHAR}
-  </select>
-
+  <!-- 删除 -->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from fun_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
+  <!-- 插入 -->
   <insert id="insert" parameterType="com.shixun.funchat.entity.User">
     insert into fun_user (id, username, password, 
       telephone, icon, geder, 
@@ -70,7 +83,8 @@
       #{birthday,jdbcType=DATE}, #{addr,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR}, 
       #{perSignature,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.shixun.funchat.entity.User">
+  <!-- 选择性插入 -->
+  <insert id="insertSelective" parameterType="com.shixun.funchat.entity.User" useGeneratedKeys="true" keyProperty="id">
     insert into fun_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -137,6 +151,7 @@
       </if>
     </trim>
   </insert>
+  <!-- 选择性更新 -->
   <update id="updateByPrimaryKeySelective" parameterType="com.shixun.funchat.entity.User">
     update fun_user
     <set>
@@ -170,6 +185,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!-- 更新 -->
   <update id="updateByPrimaryKey" parameterType="com.shixun.funchat.entity.User">
     update fun_user
     set username = #{username,jdbcType=VARCHAR},

@@ -2,24 +2,38 @@ package com.shixun.funchat.service;
 
 import com.shixun.funchat.entity.User;
 
-import javax.servlet.http.HttpSession;
-import java.util.List;
-import java.util.Map;
-
 public interface UserService {
 
-    //登录函数
-    Map<String, String> login(User user, HttpSession session);
+    /**
+     * 登录验证
+     *
+     * @param userName 用户名
+     * @param password 密码
+     * @return null 验证失败 其他 验证成功的用户信息
+     */
+    User login(String userName, String password);
 
-    //注册函数
-    Map<String, String> register(User user, HttpSession session);
+    /**
+     * 注册用户
+     *
+     * @param user 要注册的用户信息
+     * @return null 注册失败 其他 注册成功的用户信息
+     */
+    User register(User user);
 
-//    //查看个人资料
-//    User userinfo(User user);
+    /**
+     * 更新用户信息
+     *
+     * @param user 要更新的用户信息
+     * @return null 更新失败 其他 更新后的用户信息
+     */
+    User updateUserInfo(User user);
 
-    //修改个人资料
-    Map<String, String> edituser(User user,String username, HttpSession session);
-
-    //查找用户
-    List<User> search(User user);
+    /**
+     * 获取用户信息
+     *
+     * @param userId 用户ID
+     * @return null 没有找到用户 其他 用户信息
+     */
+    User getUserInfo(Integer userId);
 }

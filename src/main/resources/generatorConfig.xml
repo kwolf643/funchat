@@ -93,7 +93,14 @@
         </table>
         -->
         <!-- 群结构表 -->
+        <!--
         <table tableName="grop_structure" domainObjectName="GroupStructure"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+        -->
+        <table tableName="friend" domainObjectName="Friend"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

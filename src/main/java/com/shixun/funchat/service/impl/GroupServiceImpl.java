@@ -124,7 +124,6 @@ public class GroupServiceImpl implements GroupService {
      * @return 群聊数组
      */
     @Override
-    @Transactional
     public List<ChatGroup> displayChatGroup(Integer userId) {
         return chatGroupMapper.selectChatGroupsByUserId(userId);
     }
@@ -136,7 +135,6 @@ public class GroupServiceImpl implements GroupService {
      * @return 用户数组
      */
     @Override
-    @Transactional
     public List<User> displayChatGroupMember(Integer groupId) {
         return userMapper.selectUserByGroupId(groupId);
     }

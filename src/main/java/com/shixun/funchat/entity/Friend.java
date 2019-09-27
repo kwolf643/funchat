@@ -1,23 +1,13 @@
 package com.shixun.funchat.entity;
 
-public class Friend {
-    private Integer friendaId;
+public class Friend extends FriendKey {
+    private Boolean accept;
 
-    private Integer friendbId;
-
-    public Integer getFriendaId() {
-        return friendaId;
+    public Boolean getAccept() {
+        return accept;
     }
 
-    public void setFriendaId(Integer friendaId) {
-        this.friendaId = friendaId;
-    }
-
-    public Integer getFriendbId() {
-        return friendbId;
-    }
-
-    public void setFriendbId(Integer friendbId) {
-        this.friendbId = friendbId;
+    public void setAccept(Boolean accept) {
+        this.accept = accept;
     }
 }

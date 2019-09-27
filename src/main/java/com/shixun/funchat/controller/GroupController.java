@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.shixun.funchat.entity.ChatGroup;
 import com.shixun.funchat.entity.User;
 import com.shixun.funchat.service.GroupService;
+import com.shixun.funchat.utils.MyException;
+import com.shixun.funchat.utils.MyExceptionType;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,45 +23,20 @@ import java.util.Map;
 public class GroupController {
     private static Logger log = LoggerFactory.getLogger(GroupController.class);
 
-    private enum MyExceptionType {
-        Empty, NotExist, ParamError, Success, Failed,
-        DefaultError
-    }
-
-    static class MyException extends Exception {
-        private MyExceptionType type;
-
-        public MyException() {
-            super();
-        }
-
-        public MyException(MyExceptionType type) {
-            this.type = type;
-        }
-
-        public MyExceptionType getType() {
-            return type;
-        }
-    }
-
-
     @Autowired
     private GroupService groupService;
 
-    @GetMapping("/testGroup")
-    public String toTestGroup() {
-        return "test_group";
-    }
-
-    @GetMapping("/index_qiaofeng")
-    public String indexQiaoFeng() {
-        return "index_qiaofeng";
-    }
-
+    /**
+     * 群聊控制
+     *
+     * @param jsonString JSON字符串
+     * @param session HTTP 会话
+     * @return JSON返回数据
+     */
     @PostMapping("/GroupControl")
     @ResponseBody
-    public String testGroup(@RequestBody String jsonString, HttpSession session) {
-        HashMap<String, Object> map = new HashMap<>();
+    public Map<String, Object> groupControl(@RequestBody String jsonString, HttpSession session) {
+        Map<String, Object> map = new HashMap<>();
         map.put("result", "error");
         map.put("error_info", "Default error!");
 
@@ -67,7 +44,7 @@ public class GroupController {
         User user = (User) session.getAttribute("USER_SESSION");
 
         //接收json数据
-        log.info("GroupControl" + jsonString);
+        log.info("GroupControl: " + jsonString);
         JSONObject jsonObject = JSON.parseObject(jsonString);
         String json_func = jsonObject.getString("func");
 
@@ -202,8 +179,7 @@ public class GroupController {
             }
         }
 
-        JSONObject rs_json = (JSONObject) JSON.toJSON(map);
-        log.info("rs_json = " + rs_json.toJSONString());
-        return rs_json.toJSONString();
+        return map;
     }
+
 }

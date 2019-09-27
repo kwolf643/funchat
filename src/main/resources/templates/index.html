@@ -5,75 +5,19 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Funchat - Have a fun!</title>
-
-    <!-- Favicon -->
-    <!--<link rel="icon" href="./media/img/favicon.png" type="image/png">-->
+    <title>Funchat - 聊得开心</title>
 
     <!-- Soho css -->
-    <link rel="stylesheet" href="./css/soho-funchat.min.css">
+    <link rel="stylesheet" href="/css/soho-funchat.min.css">
 
     <!-- Funchat css -->
-    <link rel="stylesheet" href="./css/funchat.css">
+    <link rel="stylesheet" href="/css/funchat.css">
 </head>
 <body>
 
     <!-- page loading -->
     <div class="page-loading"></div>
     <!-- ./ page loading -->
-
-    <!-- disconnected modal -->
-    <div class="modal fade" id="disconnected" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-zoom" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="connection-error">
-                        <h4 class="text-center">Application disconnected...</h4>
-                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                             y="0px"
-                             width="862.899px" height="862.9px" viewBox="0 0 862.899 862.9"
-                             style="enable-background:new 0 0 862.899 862.9;"
-                             xml:space="preserve">
-                        <g>
-                            <g>
-                                <circle cx="385.6" cy="656.1" r="79.8"/>
-                                <path d="M561.7,401c-15.801-10.3-32.601-19.2-50.2-26.6c-39.9-16.9-82.3-25.5-126-25.5c-44.601,0-87.9,8.9-128.6,26.6
-                                    c-39.3,17-74.3,41.3-104.1,72.2L253.5,545c34.899-36.1,81.8-56,132-56c49,0,95.1,19.1,129.8,53.8l25.4-25.399L493,469.7L561.7,401
-                                    z"/>
-                                <path d="M385.6,267.1c107.601,0,208.9,41.7,285.3,117.4l98.5-99.5c-50-49.5-108.1-88.4-172.699-115.6
-                                    c-66.9-28.1-138-42.4-211.101-42.4c-73.6,0-145,14.4-212.3,42.9c-65,27.5-123.3,66.8-173.3,116.9l99,99
-                                    C175.5,309.299,277.3,267.1,385.6,267.1z"/>
-                                <polygon points="616.8,402.5 549.7,469.599 639.2,559.099 549.7,648.599 616.8,715.7 706.3,626.2 795.8,715.7 862.899,648.599
-                                    773.399,559.099 862.899,469.599 795.8,402.5 706.3,492 		"/>
-                            </g>
-                        </g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                    </svg>
-                    </div>
-                </div>
-                <div class="modal-footer justify-content-center">
-                    <button type="button" class="btn btn-primary btn-lg">Reconnect</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ./ disconnected modal -->
 
     <!-- call modal -->
     <div class="modal call fade" id="call" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -318,7 +262,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">
-                        <i class="ti-pencil"></i> Profile Edit
+                        <i class="ti-pencil"></i>信息修改
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i class="ti-close"></i>
@@ -328,78 +272,95 @@
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#personal" role="tab"
-                               aria-controls="personal" aria-selected="true">Personal</a>
+                               aria-controls="personal" aria-selected="true">个人</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#about" role="tab" aria-controls="about"
-                               aria-selected="false">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#social-links" role="tab"
-                               aria-controls="social-links" aria-selected="false">Social Links</a>
+                               aria-selected="false">签名</a>
                         </li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane show active" id="personal" role="tabpanel">
                             <form>
                                 <div class="form-group">
-                                    <label for="fullname" class="col-form-label">Fullname</label>
+                                    <label for="username" class="col-form-label">用户名</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                         <span class="input-group-text">
                                             <i class="ti-user"></i>
                                         </span>
                                         </div>
-                                        <input type="text" class="form-control" id="fullname">
+                                        <input type="text" class="form-control" id="username">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-form-label">Avatar</label>
+                                    <label class="col-form-label">头像</label>
                                     <div class="d-flex align-items-center">
                                         <div>
                                             <figure class="avatar mr-3 item-rtl">
-                                                <img src="./media/img/man_avatar3.jpg"
+                                                <img id="icon" src="./media/img/man_avatar3.jpg"
                                                      class="rounded-circle">
                                             </figure>
                                         </div>
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile">
-                                            <label class="custom-file-label" for="customFile">Choose file</label>
+                                            <input type="file" class="custom-file-input" id="customIconFile">
+                                            <label class="custom-file-label" for="customIconFile">选择文件</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="city" class="col-form-label">City</label>
+                                    <label for="gender" class="col-form-label">性别</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                         <span class="input-group-text">
-                                            <i class="ti-map-alt"></i>
+                                            <i class="ti-user"></i>
                                         </span>
                                         </div>
-                                        <input type="text" class="form-control" id="city">
+                                        <input type="text" class="form-control" id="gender">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="phone" class="col-form-label">Phone</label>
+                                    <label for="birthday" class="col-form-label">生日</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="ti-user"></i>
+                                        </span>
+                                        </div>
+                                        <input type="text" class="form-control" id="birthday">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="telephone" class="col-form-label">电话</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                         <span class="input-group-text">
                                             <i class="ti-mobile"></i>
                                         </span>
                                         </div>
-                                        <input type="text" class="form-control" id="phone"
-                                               placeholder="(555) 555 55 55">
+                                        <input type="text" class="form-control" id="telephone">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="website" class="col-form-label">Website</label>
+                                    <label for="addr" class="col-form-label">地址</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="ti-map-alt"></i>
+                                        </span>
+                                        </div>
+                                        <input type="text" class="form-control" id="addr">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="mail" class="col-form-label">邮箱</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                         <span class="input-group-text">
                                             <i class="ti-link"></i>
                                         </span>
                                         </div>
-                                        <input type="text" class="form-control" id="website">
+                                        <input type="text" class="form-control" id="mail">
                                     </div>
                                 </div>
                             </form>
@@ -407,104 +368,15 @@
                         <div class="tab-pane" id="about" role="tabpanel">
                             <form action="">
                                 <div class="form-group">
-                                    <label for="about-text" class="col-form-label">Write a few words that describe
-                                        you</label>
-                                    <textarea class="form-control" id="about-text"></textarea>
-                                </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" checked id="customCheck1">
-                                    <label class="custom-control-label" for="customCheck1">View profile</label>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="tab-pane" id="social-links" role="tabpanel">
-                            <form action="">
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                    <span class="input-group-text bg-facebook">
-                                        <i class="ti-facebook"></i>
-                                    </span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="Username">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                    <span class="input-group-text bg-twitter">
-                                        <i class="ti-twitter"></i>
-                                    </span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="Username">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                    <span class="input-group-text bg-instagram">
-                                        <i class="ti-instagram"></i>
-                                    </span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="Username">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                    <span class="input-group-text bg-linkedin">
-                                        <i class="ti-linkedin"></i>
-                                    </span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="Username">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                    <span class="input-group-text bg-dribbble">
-                                        <i class="ti-dribbble"></i>
-                                    </span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="Username">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                    <span class="input-group-text bg-youtube">
-                                        <i class="ti-youtube"></i>
-                                    </span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="Username">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                    <span class="input-group-text bg-google">
-                                        <i class="ti-google"></i>
-                                    </span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="Username">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                    <span class="input-group-text bg-whatsapp">
-                                        <i class="fa fa-whatsapp"></i>
-                                    </span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="Username">
-                                    </div>
+                                    <label for="sign" class="col-form-label">编写你的签名</label>
+                                    <textarea class="form-control" id="sign"></textarea>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary">保存</button>
                 </div>
             </div>
         </div>
@@ -559,14 +431,9 @@
                             <i class="ti-comment-alt"></i>
                         </a>
                     </li>
-                    <li>
+                    <li class="brackets">
                         <a data-navigation-target="friends" href="#" class="notifiy_badge">
                             <i class="ti-user"></i>
-                        </a>
-                    </li>
-                    <li data-navigation-target="favorites" class="brackets">
-                        <a href="#">
-                            <i class="ti-star"></i>
                         </a>
                     </li>
                     <li>
@@ -598,15 +465,15 @@
                 <!-- Chats sidebar -->
                 <div id="chats" class="sidebar active">
                     <header>
-                        <span>Chats</span>
+                        <span>聊天</span>
                         <ul class="list-inline">
-                            <li class="list-inline-item" data-toggle="tooltip" title="New Group">
+                            <li class="list-inline-item" data-toggle="tooltip" title="新建群聊">
                                 <a class="btn btn-light" href="#" data-toggle="modal" data-target="#newGroup">
                                     <i class="fa fa-users"></i>
                                 </a>
                             </li>
                             <li class="list-inline-item">
-                                <a class="btn btn-light" data-toggle="tooltip" title="New Chat" href="#"
+                                <a class="btn btn-light" data-toggle="tooltip" title="加入群聊" href="#"
                                    data-navigation-target="friends">
                                     <i class="ti-comment-alt"></i>
                                 </a>
@@ -618,32 +485,86 @@
                             </li>
                         </ul>
                     </header>
-                    <form action="">
-                        <input type="text" class="form-control" placeholder="Search chat">
-                    </form>
                     <div class="sidebar-body">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                <figure class="avatar avatar-state-success">
-                                    <img src="./media/img/man_avatar1.jpg" class="rounded-circle">
-                                </figure>
+                                <div class="avatar-group">
+                                    <figure class="avatar">
+                                    <span class="avatar-title bg-success rounded-circle">
+                                        <i class="fa fa-users"></i>
+                                    </span>
+                                    </figure>
+                                </div>
                                 <div class="users-list-body">
-                                    <h5>Patsy Paulton</h5>
-                                    <p>Traditional heading elscas sdscsd sdcsdsc</p>
+                                    <h5>群聊1</h5>
+                                    <p>这是群聊1</p>
                                     <div class="users-list-action">
                                         <div class="new-message-count">2</div>
                                     </div>
                                 </div>
                             </li>
                             <li class="list-group-item open-chat">
-                                <div>
+                                <div class="avatar-group">
                                     <figure class="avatar">
-                                        <img src="./media/img/man_avatar3.jpg" class="rounded-circle">
+                                    <span class="avatar-title bg-warning bg-success rounded-circle">
+                                        <i class="fa fa-users"></i>
+                                    </span>
                                     </figure>
                                 </div>
                                 <div class="users-list-body">
-                                    <h5>Karl Hubane</h5>
-                                    <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
+                                    <h5>群聊2</h5>
+                                    <p>这是群聊2</p>
+                                    <div class="users-list-action action-toggle">
+                                        <div class="dropdown">
+                                            <a data-toggle="dropdown" href="#">
+                                                <i class="ti-more"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a href="#" class="dropdown-item">打开</a>
+                                                <a href="#" data-navigation-target="contact-information"
+                                                   class="dropdown-item">信息</a>
+                                                <a href="#" class="dropdown-item">退出</a>
+                                                <a href="#" class="dropdown-item">删除</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- ./ Chats sidebar -->
+
+                <!-- Friends sidebar -->
+                <div id="friends" class="sidebar">
+                    <header>
+                        <span>好友</span>
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <a class="btn btn-light" href="#" data-toggle="modal" data-target="#addFriends">
+                                    <i class="ti-plus btn-icon"></i>添加好友
+                                </a>
+                            </li>
+                            <li class="list-inline-item d-md-none">
+                                <a href="#" class="btn btn-light sidebar-close">
+                                    <i class="ti-close"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </header>
+                    <div class="sidebar-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="avatar-group">
+                                    <figure class="avatar">
+                                    <span class="avatar-title bg-warning bg-success rounded-circle">
+                                        A
+                                    </span>
+                                    </figure>
+                                </div>
+                                <div class="users-list-body">
+                                    <h5>好友1</h5>
+                                    <p>这是好友1</p>
                                     <div class="users-list-action action-toggle">
                                         <div class="dropdown">
                                             <a data-toggle="dropdown" href="#">
@@ -664,365 +585,13 @@
                                 <div class="avatar-group">
                                     <figure class="avatar">
                                     <span class="avatar-title bg-warning bg-success rounded-circle">
-                                        <i class="fa fa-users"></i>
+                                        B
                                     </span>
                                     </figure>
                                 </div>
                                 <div class="users-list-body">
-                                    <h5>Entertainment Group</h5>
-                                    <p><strong>Maher Ruslandi: </strong>Hello!!!</p>
-                                    <div class="users-list-action action-toggle">
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" href="#">
-                                                <i class="ti-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
-                                                <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
-                                                <a href="#" class="dropdown-item">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div>
-                                    <figure class="avatar avatar-state-warning">
-                                        <img src="./media/img/women_avatar1.jpg" class="rounded-circle">
-                                    </figure>
-                                </div>
-                                <div class="users-list-body">
-                                    <h5>Jennica Kindred</h5>
-                                    <p>I know how important this file is to you. You can trust me ;)</p>
-                                    <div class="users-list-action action-toggle">
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" href="#">
-                                                <i class="ti-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
-                                                <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
-                                                <a href="#" class="dropdown-item">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div>
-                                    <figure class="avatar">
-                                        <span class="avatar-title bg-info rounded-circle">M</span>
-                                    </figure>
-                                </div>
-                                <div class="users-list-body">
-                                    <h5>Marvin Rohan</h5>
-                                    <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                    <div class="users-list-action action-toggle">
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" href="#">
-                                                <i class="ti-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
-                                                <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
-                                                <a href="#" class="dropdown-item">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div>
-                                    <figure class="avatar">
-                                        <img src="./media/img/man_avatar2.jpg" class="rounded-circle">
-                                    </figure>
-                                </div>
-                                <div class="users-list-body">
-                                    <h5>Frans Hanscombe</h5>
-                                    <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                    <div class="users-list-action action-toggle">
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" href="#">
-                                                <i class="ti-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
-                                                <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
-                                                <a href="#" class="dropdown-item">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- ./ Chats sidebar -->
-
-                <!-- Friends sidebar -->
-                <div id="friends" class="sidebar">
-                    <header>
-                        <span>Friends</span>
-                        <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <a class="btn btn-light" href="#" data-toggle="modal" data-target="#addFriends">
-                                    <i class="ti-plus btn-icon"></i> Add Friends
-                                </a>
-                            </li>
-                            <li class="list-inline-item d-md-none">
-                                <a href="#" class="btn btn-light sidebar-close">
-                                    <i class="ti-close"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </header>
-                    <form action="">
-                        <input type="text" class="form-control" placeholder="Search chat">
-                    </form>
-                    <div class="sidebar-body">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <div>
-                                    <figure class="avatar">
-                                        <img src="./media/img/women_avatar5.jpg" class="rounded-circle">
-                                    </figure>
-                                </div>
-                                <div class="users-list-body">
-                                    <h5>Harrietta Souten</h5>
-                                    <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                    <div class="users-list-action action-toggle">
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" href="#">
-                                                <i class="ti-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
-                                                <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
-                                                <a href="#" class="dropdown-item">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div>
-                                    <figure class="avatar">
-                                        <span class="avatar-title bg-success rounded-circle">A</span>
-                                    </figure>
-                                </div>
-                                <div class="users-list-body">
-                                    <h5>Aline McShee</h5>
-                                    <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                    <div class="users-list-action action-toggle">
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" href="#">
-                                                <i class="ti-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
-                                                <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
-                                                <a href="#" class="dropdown-item">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div>
-                                    <figure class="avatar">
-                                        <img src="./media/img/women_avatar1.jpg" class="rounded-circle">
-                                    </figure>
-                                </div>
-                                <div class="users-list-body">
-                                    <h5>Brietta Blogg</h5>
-                                    <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                    <div class="users-list-action action-toggle">
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" href="#">
-                                                <i class="ti-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
-                                                <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
-                                                <a href="#" class="dropdown-item">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div>
-                                    <figure class="avatar">
-                                        <img src="./media/img/man_avatar3.jpg" class="rounded-circle">
-                                    </figure>
-                                </div>
-                                <div class="users-list-body">
-                                    <h5>Karl Hubane</h5>
-                                    <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                    <div class="users-list-action action-toggle">
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" href="#">
-                                                <i class="ti-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
-                                                <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
-                                                <a href="#" class="dropdown-item">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div>
-                                    <figure class="avatar">
-                                        <img src="./media/img/man_avatar2.jpg" class="rounded-circle">
-                                    </figure>
-                                </div>
-                                <div class="users-list-body">
-                                    <h5>Jillana Tows</h5>
-                                    <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                    <div class="users-list-action action-toggle">
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" href="#">
-                                                <i class="ti-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
-                                                <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
-                                                <a href="#" class="dropdown-item">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div>
-                                    <figure class="avatar">
-                                        <span class="avatar-title bg-info rounded-circle">AD</span>
-                                    </figure>
-                                </div>
-                                <div class="users-list-body">
-                                    <h5>Alina Derington</h5>
-                                    <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                    <div class="users-list-action action-toggle">
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" href="#">
-                                                <i class="ti-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
-                                                <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
-                                                <a href="#" class="dropdown-item">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div>
-                                    <figure class="avatar">
-                                        <span class="avatar-title bg-warning rounded-circle">S</span>
-                                    </figure>
-                                </div>
-                                <div class="users-list-body">
-                                    <h5>Stevy Kermeen</h5>
-                                    <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                    <div class="users-list-action action-toggle">
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" href="#">
-                                                <i class="ti-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
-                                                <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
-                                                <a href="#" class="dropdown-item">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div>
-                                    <figure class="avatar">
-                                        <img src="./media/img/man_avatar1.jpg" class="rounded-circle">
-                                    </figure>
-                                </div>
-                                <div class="users-list-body">
-                                    <h5>Stevy Kermeen</h5>
-                                    <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                    <div class="users-list-action action-toggle">
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" href="#">
-                                                <i class="ti-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
-                                                <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
-                                                <a href="#" class="dropdown-item">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div>
-                                    <figure class="avatar">
-                                        <img src="./media/img/man_avatar5.jpg" class="rounded-circle">
-                                    </figure>
-                                </div>
-                                <div class="users-list-body">
-                                    <h5>Gloriane Shimmans</h5>
-                                    <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                    <div class="users-list-action action-toggle">
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" href="#">
-                                                <i class="ti-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
-                                                <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
-                                                <a href="#" class="dropdown-item">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div>
-                                    <figure class="avatar">
-                                        <span class="avatar-title bg-secondary rounded-circle">B</span>
-                                    </figure>
-                                </div>
-                                <div class="users-list-body">
-                                    <h5>Bernhard Perrett</h5>
-                                    <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
+                                    <h5>好友2</h5>
+                                    <p>这是好友2</p>
                                     <div class="users-list-action action-toggle">
                                         <div class="dropdown">
                                             <a data-toggle="dropdown" href="#">
@@ -1044,100 +613,6 @@
                 </div>
                 <!-- ./ Friends sidebar -->
 
-                <!-- Favorites sidebar -->
-                <div id="favorites" class="sidebar">
-                    <header>
-                        <span>Favorites</span>
-                        <ul class="list-inline">
-                            <li class="list-inline-item d-md-none">
-                                <a href="#" class="btn btn-light sidebar-close">
-                                    <i class="ti-close"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </header>
-                    <form action="">
-                        <input type="text" class="form-control" placeholder="Search favorites">
-                    </form>
-                    <div class="sidebar-body">
-                        <ul class="list-group list-group-flush users-list">
-                            <li class="list-group-item">
-                                <div class="users-list-body">
-                                    <h5>Jennica Kindred</h5>
-                                    <p>I know how important this file is to you. You can trust me ;)</p>
-                                    <div class="users-list-action action-toggle">
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" href="#">
-                                                <i class="ti-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">View Chat</a>
-                                                <a href="#" class="dropdown-item">Forward</a>
-                                                <a href="#" class="dropdown-item">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="users-list-body">
-                                    <h5>Marvin Rohan</h5>
-                                    <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                    <div class="users-list-action action-toggle">
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" href="#">
-                                                <i class="ti-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">View Chat</a>
-                                                <a href="#" class="dropdown-item">Forward</a>
-                                                <a href="#" class="dropdown-item">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="users-list-body">
-                                    <h5>Frans Hanscombe</h5>
-                                    <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                    <div class="users-list-action action-toggle">
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" href="#">
-                                                <i class="ti-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">View Chat</a>
-                                                <a href="#" class="dropdown-item">Forward</a>
-                                                <a href="#" class="dropdown-item">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="users-list-body">
-                                    <h5>Karl Hubane</h5>
-                                    <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                                    <div class="users-list-action action-toggle">
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" href="#">
-                                                <i class="ti-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">View Chat</a>
-                                                <a href="#" class="dropdown-item">Forward</a>
-                                                <a href="#" class="dropdown-item">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- ./ Stars sidebar -->
-
             </div>
             <!-- ./ sidebar group -->
 
@@ -1145,13 +620,17 @@
             <div class="chat">
                 <div class="chat-header">
                     <div class="chat-header-user">
-                        <figure class="avatar avatar-lg">
-                            <img src="./media/img/man_avatar3.jpg" class="rounded-circle">
-                        </figure>
+                        <div class="avatar-group">
+                            <figure class="avatar avatar-lg">
+                                    <span class="avatar-title bg-warning bg-success rounded-circle">
+                                        <i class="fa fa-users"></i>
+                                    </span>
+                            </figure>
+                        </div>
                         <div>
-                            <h5>Karl Hubane</h5>
+                            <h5>群聊1</h5>
                             <small class="text-muted">
-                                <i>Online</i>
+                                <i>在线</i>
                             </small>
                         </div>
                     </div>
@@ -1172,11 +651,11 @@
                                     <i class="ti-more"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="#" data-navigation-target="contact-information" class="dropdown-item">Profile</a>
-                                    <a href="#" class="dropdown-item">Add to archive</a>
-                                    <a href="#" class="dropdown-item">Delete</a>
+                                    <a href="#" data-navigation-target="contact-information"
+                                       class="dropdown-item">信息</a>
+                                    <a href="#" class="dropdown-item">退出</a>
                                     <div class="dropdown-divider"></div>
-                                    <a href="#" class="dropdown-item">Block</a>
+                                    <a href="#" class="dropdown-item">删除</a>
                                 </div>
                             </li>
                         </ul>
@@ -1465,18 +944,18 @@
     <!-- ./ layout -->
 
     <!-- JQuery -->
-    <script src="./js/jquery-3.4.1.min.js"></script>
+    <script src="/js/jquery-3.4.1.min.js"></script>
 
-    <!-- Popper.js -->
-    <script src="./js/popper.min.js"></script>
+    <!-- Popper -->
+    <script src="/js/popper.min.js"></script>
 
     <!-- Bootstrap -->
-    <script src="./js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 
     <!-- Funchat -->
-    <script src="./js/funchat.js"></script>
-    
-    <!-- Example -->
-    <script src="./js/examples.js"></script>
+    <script src="/js/funchat.js"></script>
+
+    <!-- Funchat -->
+    <script src="/js/index.js"></script>
 </body>
 </html>
