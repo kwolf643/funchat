@@ -8,35 +8,51 @@
     var iNdex = {
         Ws: {
             ws: undefined,
-            openWebSocket: function () {
+            openWebSocket: function (func) {
                 if (typeof (WebSocket) == "undefined") {
-                    console.log("openSocket: 您的浏览器不支持WebSocket");
+                    console.log("openSocket: 您的浏览器不支持 WebSocket");
                 } else {
-                    console.log("openSocket: 您的浏览器支持WebSocket");
-                    var socketUrl = "ws://" + window.location.host + "/websocket?userID=" + $("#userId").val();
-                    socketUrl = socketUrl.replace("https", "ws").replace("http", "ws");
+                    console.log("openSocket: 您的浏览器支持 WebSocket");
+                    var socketUrl = "ws://" + window.location.host + "/websocket";
                     console.log(socketUrl);
-                    socket = new WebSocket(socketUrl);
+                    this.ws = new WebSocket(socketUrl);
                     //打开事件
-                    socket.onopen = function () {
-                        console.log("websocket已打开");
+                    this.ws.onopen = function () {
+                        console.log("Websocket 已打开");
+                        if (typeof (func) == "function")
+                            this.onMessage = func;
                     };
                     //获得消息事件
-                    socket.onmessage = function (msg) {
-                        console.log("接收消息");
-                        console.log(msg.data);
-                        //发现消息进入    开始处理前端触发逻辑
+                    this.ws.onmessage = function (msg) {
+                        console.log("接收消息:" + msg.data);
+                        if (typeof (this.onMessage) == "function")
+                            this.onMessage(msg.data);
                     };
                     //关闭事件
-                    socket.onclose = function () {
-                        console.log("websocket已关闭");
+                    this.ws.onclose = function () {
+                        console.log("Websocket 已关闭");
                     };
                     //发生了错误事件
-                    socket.onerror = function () {
-                        console.log("websocket发生了错误");
+                    this.ws.onerror = function () {
+                        console.log("Websocket 发生了错误");
                     }
                 }
-            }
+            },
+            sendMessage: function (data) {
+                if (data)
+                    this.ws.send(data);
+            },
+            onMessage: undefined
+        },
+        Group: {
+            current: 0
+        },
+        sendFriendMessage: function (friendId) {
+            iNdex.Ws.sendMessage('[{"cmd":"updateUi","toUserId":"' + friendId + '"}]');
+        },
+        sendGroupMessage: function (groupId, content) {
+            iNdex.Ws.sendMessage(
+                '[{"cmd":"sendMessage","toGroupId":"' + groupId + '","contentText":"' + content + '"}]');
         },
         displayGroup: function () {
             funChat.Utils.jsonAjax("/GroupControl", "post",
@@ -52,11 +68,15 @@
                             item.color = "success";
                             item.icon = funChat.Utils.randomLetter(1, 26);
                             item.downlist = [];
-                            item.downlist.push({text: "信息", value: "message"});
+                            item.downlist.push({text: "修改", value: "message"});
                             item.downlist.push({text: "删除", value: "delete"});
                             item.datalist = [];
                             item.datalist.push({key: "group-id", value: o.gropId});
                             item.datalist.push({key: "group-name", value: o.gropName});
+                            item.datalist.push({key: "group-sum", value: o.sum});
+                            item.datalist.push({key: "group-color", value: item.color});
+                            item.datalist.push({key: "group-icon", value: item.icon});
+                            item.datalist.push({key: "group-info", value: "group-info"});
                             list.push(item);
                         }
                         funChat.List.updateList("chats", list);
@@ -131,6 +151,37 @@
                             });
                     }
                 })
+        },
+        updateChat: function (item) {
+            var chat_head = $('.chat .chat-header .chat-header-user');
+            chat_head.empty();
+            chat_head.append(
+                '<div class="avatar-group">\n' +
+                '    <figure class="avatar avatar-lg">\n' +
+                '            <span class="avatar-title bg-' + item.color + ' rounded-circle">\n' +
+                '                ' + item.icon + '\n' +
+                '            </span>\n' +
+                '    </figure>\n' +
+                '</div>\n' +
+                '<div>\n' +
+                '    <h5>' + item.name + '</h5>\n' +
+                '    <small class="text-muted">\n' +
+                '        <i>ID: ' + item.id + ', 人数: ' + item.sum + '</i>\n' +
+                '    </small>\n' +
+                '</div>');
+            $('.chat').attr("data-chat-group-id", item.id);
+        }
+    };
+
+    //消息处理
+    var messageHandle = function (json_str) {
+        var data = $.parseJSON(json_str);
+        switch (data.cmd) {
+            case "updateUi":
+                iNdex.displayFriend();
+                break;
+            case "sendMessage":
+                break;
         }
     };
 
@@ -139,6 +190,7 @@
         funChat.Started.pageLoadingClose();
         iNdex.displayGroup();
         iNdex.displayFriend();
+        iNdex.Ws.openWebSocket(messageHandle);
     });
 
     //搜索好友按钮点击
@@ -172,6 +224,7 @@
         funChat.Utils.jsonAjax("/FriendControl", "post",
             {func: "addFriend", friendId: user_id}, {
                 success_call: function (map) {
+                    iNdex.sendFriendMessage(user_id);
                     alert("发送好友请求成功！");
                 },
                 failed_call: function (map) {
@@ -188,6 +241,7 @@
             {func: "deleteFriend", friendId: user_id}, {
                 success_call: function (map) {
                     o.remove();
+                    iNdex.sendFriendMessage(user_id);
                     var oo = $(".sidebar-group .sidebar#contact-information");
                     oo.removeClass("active");
                     oo.closest(".sidebar-group").removeClass("mobile-open");
@@ -207,6 +261,7 @@
             {func: "acceptFriend", friendId: user_id}, {
                 success_call: function (map) {
                     iNdex.displayFriend();
+                    iNdex.sendFriendMessage(user_id);
                     var oo = $(".sidebar-group .sidebar#contact-information");
                     oo.removeClass("active");
                     oo.closest(".sidebar-group").removeClass("mobile-open");
@@ -297,6 +352,23 @@
         funChat.Info.updateInfo(e, list);
     });
 
+    //群聊切换点击
+    $(document).on("click", "[data-group-info]", function () {
+        item = {};
+        item.id = $(this).data("group-id");
+        item.name = $(this).data("group-name");
+        item.sum = $(this).data("group-sum");
+        item.color = $(this).data("group-color");
+        item.icon = $(this).data("group-icon");
+        iNdex.updateChat(item);
+    });
+
+    $(document).on("click", "#chat-send", function () {
+        var toGroupId = $('.chat').data('chat-group-id');
+        var contentText = $("#chat-input").val();
+        iNdex.sendGroupMessage(toGroupId, contentText);
+    });
+
     //删除群聊
     $(document).on("click", "#chats [data-list-dropdown='delete']", function () {
         // 这个this指向当前点击对象,this是JS对象的一个特殊指针，它的指向根据环境不同而发生变化
@@ -316,7 +388,7 @@
                         {
                             success_call: function (map) {
                                 o.remove();
-                                alert("您已解散本群:"+group_id);
+                                alert("您已解散本群:" + group_id);
                             }
                         });
                 },
@@ -326,7 +398,6 @@
             }
         )
     });
-
 
     //弹出群聊信息模态框
     $(document).on("click", ".list-group-item [data-list-dropdown='message']", function () {
