@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -177,7 +178,14 @@ public class UserController {
                     map.put("return", rs_user);
                     session.setAttribute("USER_SESSION", rs_user);
                     throw new MyException(MyExceptionType.Success);
-
+                }
+                case "searchUser": {
+                    String searchIdOrName = jsonObject.getString("searchIdOrName");
+                    if (StringUtils.isBlank(searchIdOrName))
+                        throw new MyException(MyExceptionType.ParamError);
+                    List<User> users = userService.searchUserByIdOrName(searchIdOrName);
+                    map.put("return", users);
+                    throw new MyException(MyExceptionType.Success);
                 }
             }
         } catch (MyException e) {

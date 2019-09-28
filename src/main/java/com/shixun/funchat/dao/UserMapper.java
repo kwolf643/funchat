@@ -16,6 +16,14 @@ public interface UserMapper {
     List<User> selectUserByGroupId(Integer grop_id);
 
     /**
+     * 根据用户名称模糊查询
+     *
+     * @param searchName 用户名称
+     * @return 找到的用户信息数组
+     */
+    List<User> selectByUserName(String searchName);
+
+    /**
      * 选择性查找
      *
      * @param user 要查找的用户信息

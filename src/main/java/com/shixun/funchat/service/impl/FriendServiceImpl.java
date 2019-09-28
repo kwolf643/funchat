@@ -94,8 +94,8 @@ public class FriendServiceImpl implements FriendService {
         friendKey.setFriendaId(userId);
         friendKey.setFriendbId(friendId);
         friendMapper.deleteByPrimaryKey(friendKey);
-        friendKey.setFriendaId(userId);
-        friendKey.setFriendbId(friendId);
+        friendKey.setFriendaId(friendId);
+        friendKey.setFriendbId(userId);
         friendMapper.deleteByPrimaryKey(friendKey);
         return true;
     }
@@ -155,6 +155,47 @@ public class FriendServiceImpl implements FriendService {
         if (friend == null)
             return false;
         return !friend.getAccept();
+    }
+
+    /**
+     * 接受好友
+     *
+     * @param userId   用户ID
+     * @param friendId 好友ID
+     * @return true 接受成功 false 失败
+     */
+    @Override
+    public boolean acceptFriend(Integer userId, Integer friendId) {
+        if (userId == null || friendId == null)
+            return false;
+        if (!isWantFriend(friendId, userId)) //不是好友申请
+            return false;
+        Friend friend = new Friend();
+        friend.setFriendaId(friendId);
+        friend.setFriendbId(userId);
+        friend.setAccept(true);
+        friendMapper.updateByPrimaryKey(friend);
+        return true;
+    }
+
+    /**
+     * 拒绝好友
+     *
+     * @param userId   用户ID
+     * @param friendId 好友ID
+     * @return true 拒绝成功 false 失败
+     */
+    @Override
+    public boolean rejectFriend(Integer userId, Integer friendId) {
+        if (userId == null || friendId == null)
+            return false;
+        if (!isWantFriend(friendId, userId)) //不是好友申请
+            return false;
+        FriendKey friendKey = new FriendKey();
+        friendKey.setFriendaId(friendId);
+        friendKey.setFriendbId(userId);
+        friendMapper.deleteByPrimaryKey(friendKey);
+        return true;
     }
 
 }

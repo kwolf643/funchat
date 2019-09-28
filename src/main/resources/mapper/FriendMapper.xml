@@ -46,7 +46,7 @@
   </select>
 
   <!-- 好友请求-根据id关联查找fun_user表和friend表 -->
-  <select id="getUserWantFriends" parameterType="java.lang.Integer" resultMap="BaseResultMapUser">
+  <select id="selectUserWantFriends" parameterType="java.lang.Integer" resultMap="BaseResultMapUser">
     select
     <include refid="Base_Column_List_My" />
     from friend f,fun_user u

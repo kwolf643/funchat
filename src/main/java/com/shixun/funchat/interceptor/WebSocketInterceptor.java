@@ -1,11 +1,9 @@
 package com.shixun.funchat.interceptor;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
-import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
 
@@ -31,7 +29,8 @@ public class WebSocketInterceptor extends HttpSessionHandshakeInterceptor {
     public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Map<String, Object> attributes) throws Exception {
         log.debug("握手前");
         super.beforeHandshake(request, response, wsHandler, attributes);
-        if (request instanceof ServletServerHttpRequest) {
+        return attributes.get("USER_SESSION") != null;
+        /*if (request instanceof ServletServerHttpRequest) {
             ServletServerHttpRequest serverHttpRequest = (ServletServerHttpRequest) request;
             String userID = serverHttpRequest.getServletRequest().getParameter("userID");
             if (StringUtils.isNotBlank(userID)) {
@@ -45,7 +44,7 @@ public class WebSocketInterceptor extends HttpSessionHandshakeInterceptor {
             log.error("请求不能转化为 ServletServerHttpRequest");
             return false;
         }
-        return true;
+        return true;*/
     }
 
     /**

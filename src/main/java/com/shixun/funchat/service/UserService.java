@@ -2,6 +2,8 @@ package com.shixun.funchat.service;
 
 import com.shixun.funchat.entity.User;
 
+import java.util.List;
+
 public interface UserService {
 
     /**
@@ -36,4 +38,12 @@ public interface UserService {
      * @return null 没有找到用户 其他 用户信息
      */
     User getUserInfo(Integer userId);
+
+    /**
+     * 搜索用户-根据名称或ID
+     *
+     * @param s 搜索字符串-名称或ID
+     * @return 搜索结果列表
+     */
+    List<User> searchUserByIdOrName(String s);
 }

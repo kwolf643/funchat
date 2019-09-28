@@ -16,19 +16,36 @@
   <sql id="Base_Column_List">
     id, username, password, telephone, icon, geder, birthday, addr, mail, per_signature
   </sql>
+  <sql id="Base_Column_List_My">
+    u.id, u.username, u.telephone, u.icon, u.geder, u.birthday, u.addr, u.mail, u.per_signature
+  </sql>
 
   <!-- 根据grop_id关联查找grop_structure表和fun_user表 -->
   <select id="selectUserByGroupId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select u.*
+    select
+    <include refid="Base_Column_List_My" />
     from fun_user u, grop_structure s
     where u.id = s.id
     and s.grop_id = #{grop_id,jdbcType=INTEGER}
   </select>
 
+  <!-- 根据用户名称模糊查询 -->
+  <select id="selectByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List_My" />
+    from fun_user u
+    where username like concat(#{searchName,jdbcType=VARCHAR},"%")
+  </select>
+
   <!-- 选择性查询 -->
   <select id="selectBySelective" parameterType="com.shixun.funchat.entity.User" resultMap="BaseResultMap">
-    select * from fun_user
+    select
+    <include refid="Base_Column_List_My" />
+    from fun_user u
     <where>
+      <if test="id != null">
+        and id = #{id,jdbcType=INTEGER}
+      </if>
       <if test="username != null">
         and username = #{username,jdbcType=VARCHAR}
       </if>

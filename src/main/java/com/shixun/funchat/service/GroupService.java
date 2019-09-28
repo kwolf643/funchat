@@ -10,10 +10,10 @@ public interface GroupService {
     /**
      * 搜索群聊
      *
-     * @param groupName 群聊名称
+     * @param s 群聊名称或ID
      * @return 群聊数组
      */
-    List<ChatGroup> searchChatGroup(String groupName);
+    List<ChatGroup> searchChatGroup(String s);
 
     /**
      * 加入群聊
@@ -114,6 +114,4 @@ public interface GroupService {
      */
     boolean updateChatGroupInfo(Integer ownerId, ChatGroup chatGroup);
 
-    //查找群
-    List<ChatGroup> search(ChatGroup group);
 }

@@ -99,6 +99,24 @@ public class FriendController {
                     } else
                         throw new MyException(MyExceptionType.ParamError);
                 }
+                case "acceptFriend": {
+                    Integer friendId = jsonObject.getInteger("friendId");
+                    if (friendId == null)
+                        throw new MyException(MyExceptionType.ParamError);
+                    if (friendService.acceptFriend(user.getId(), friendId)) {
+                        throw new MyException(MyExceptionType.Success);
+                    } else
+                        throw new MyException(MyExceptionType.Failed);
+                }
+                case "rejectFriend": {
+                    Integer friendId = jsonObject.getInteger("friendId");
+                    if (friendId == null)
+                        throw new MyException(MyExceptionType.ParamError);
+                    if (friendService.rejectFriend(user.getId(), friendId)) {
+                        throw new MyException(MyExceptionType.Success);
+                    } else
+                        throw new MyException(MyExceptionType.Failed);
+                }
                 case "isFriend": {
                     Integer friendId = jsonObject.getInteger("friendId");
                     if (friendId != null) {

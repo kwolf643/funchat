@@ -1,6 +1,75 @@
 !$(function () {
     //初始对象
     var funChat = {
+        Info: {
+            updateInfo: function (id, list) {
+                var o = $(".sidebar-group .sidebar#" + id + " .sidebar-body");
+                o.empty();
+                var str =
+                    '<div class="pl-4 pr-4 text-center">\n' +
+                    '    <figure class="avatar avatar-state-danger avatar-xl mb-4">\n' +
+                    '        <span class="avatar-title bg-' + (list.color ? list.color : 'success') + ' rounded-circle">\n' +
+                    '            ' + (list.icon ? list.icon : 'X') + '\n' +
+                    '        </span>\n' +
+                    '    </figure>\n' +
+                    '    <h5 class="text-primary">' + (list.name ? list.name : 'Name') + '</h5>\n' +
+                    '    <p class="text-muted">User ID: ' + (list.id ? list.id : 'ID') + '</p>\n' +
+                    '</div>';
+                for (var i = 0; i < list.items.length; i++) {
+                    str += this.listDom(list.items[i]);
+                }
+                o.append(str);
+            },
+            listDom: function (item) {
+                return '<hr>\n' +
+                    '<div class="pl-4 pr-4">\n' +
+                    '    <h6>' + (item.text ? item.text : 'Text') + '</h6>\n' +
+                    '    <p class="text-muted">' + (item.content ? item.content : 'null') + '</p>\n' +
+                    '</div>';
+            }
+        },
+        Search: {
+            updateList: function (id, list) {
+                var o = $("#" + id + " .modal-dialog .modal-content .modal-body .list-group");
+                //清空列表
+                o.empty();
+                var str = "";
+                for (var i = 0; i < list.length; i++) {
+                    str += this.listDom(list[i]);
+                }
+                o.append(str);
+            },
+            listDom: function (item) {
+                var str = '<li class="list-group-item"';
+                var datalist = item.datalist ? item.datalist : [];
+                for (var i = 0; i < datalist.length; i++) {
+                    if (typeof (datalist[i].key) != "undefined")
+                        str += ' data-' + datalist[i].key + '="' + datalist[i].value + '" ';
+                }
+                str +=
+                    '>\n' +
+                    '    <div class="row align-items-center justify-content-center">\n' +
+                    '        <div class="avatar-group">\n' +
+                    '            <figure class="avatar avatar-lg">\n' +
+                    '            <span class="avatar-title bg-' + (item.color ? item.color : 'success') + ' rounded-circle">\n' +
+                    '                ' + (item.icon ? item.icon : 'C') + '\n' +
+                    '            </span>\n' +
+                    '            </figure>\n' +
+                    '        </div>\n' +
+                    '        <div class="col-5">\n' +
+                    '            <h4>' + (item.title ? item.title : 'Title') + '</h4>\n' +
+                    '            <p>' + (item.description ? item.description : 'Description') + '</p>\n' +
+                    '        </div>\n' +
+                    '        <div>\n' +
+                    '            <button type="button" class="btn btn-primary" data-list-button="' +
+                    (item.button_value ? item.button_value : '') + '">' +
+                    (item.button_text ? item.button_text : 'Button') + '</button>\n' +
+                    '        </div>\n' +
+                    '    </div>\n' +
+                    '</li>';
+                return str;
+            }
+        },
         List: {
             updateList: function (id, list) {
                 var o = $("#" + id + " .sidebar-body .list-group");
@@ -120,6 +189,17 @@
             },
             randomLetter: function (minLetter, maxLetter) {
                 return String.fromCharCode(64 + this.randomNum(minLetter, maxLetter));
+            },
+            color: {
+                blue: "primary",
+                gray_dark: "secondary",
+                green: "success",
+                red: "danger",
+                orange: "warning",
+                cyan: "info",
+                gray_light: "light",
+                black: "dark",
+                white: "white"
             }
         },
         Started: {
@@ -147,6 +227,31 @@
     //启用 tooltip
     $('[data-toggle="tooltip"]').tooltip();
 
+    //禁止回车提交表单
+    document.onkeydown = function (event) {
+        var target, code, tag;
+        if (!event) {
+            event = window.event; //针对ie浏览器
+            target = event.srcElement;
+            code = event.keyCode;
+            if (code === 13) {
+                tag = target.tagName;
+                if (tag == "TEXTAREA") {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } else {
+            target = event.target; //针对遵循w3c标准的浏览器，如Firefox
+            code = event.keyCode;
+            if (code === 13) {
+                tag = target.tagName;
+                return tag !== "INPUT";
+            }
+        }
+    };
+
     //初始化
     $(document).ready(function () {
         funChat.Started.init();
@@ -159,6 +264,31 @@
         $(".chat+.sidebar-group .sidebar").removeClass("active");
     });
 
+    //点击含有 tooltip 的标签时隐藏 tooltip
+    $(document).on("click", '[data-toggle="tooltip"]', function () {
+        $(this).tooltip('hide');
+    });
+
+    //自定义弹出模态框点击
+    $(document).on("click", "[data-my-toggle='modal']", function () {
+        var e = $(this).data("my-target");
+        $(e).modal('show');
+    });
+
+    //自定义导航
+    $(document).on("click", "[data-my-toggle='navigation']", function () {
+        var e = $(this).data("my-target"),
+            o = $(".sidebar-group .sidebar#" + e);
+        //sidebar 切换
+        o.closest(".sidebar-group").find(".sidebar").removeClass("active");
+        o.addClass("active");
+        //小屏幕切换
+        funChat.Started.mobile && ($(".sidebar-group").removeClass("mobile-open"),
+            o.closest(".sidebar-group").addClass("mobile-open"));
+        //设置 sidebar 内的焦点
+        o.find("form input:first").focus();
+    });
+
     //点击导航切换 sidebar
     $(document).on("click", "[data-navigation-target]", function () {
         //获取源对象和目标对象
@@ -167,13 +297,14 @@
         //sidebar 切换
         o.closest(".sidebar-group").find(".sidebar").removeClass("active");
         o.addClass("active");
+        //小屏幕切换
+        funChat.Started.mobile && ($(".sidebar-group").removeClass("mobile-open"),
+            o.closest(".sidebar-group").addClass("mobile-open"));
         //设置 sidebar 内的焦点
         o.find("form input:first").focus();
         //导航切换
         $("[data-navigation-target]").removeClass("active");
         $('[data-navigation-target="' + e + '"]').addClass("active");
-        funChat.Started.mobile && ($(".sidebar-group").removeClass("mobile-open"),
-            o.closest(".sidebar-group").addClass("mobile-open"));
     });
 
     //关闭 sidebar

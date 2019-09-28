@@ -19,24 +19,31 @@
     and s.id=#{id,jdbcType=INTEGER}
   </select>
 
-  <!-- 根据grop_name模糊查找grop表 -->
-  <select id="selectChatGroupByGroupName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <!-- 根据名称模糊搜索群聊 -->
+  <select id="selectByGroupName" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
-    <include refid="Base_Column_List"/>
+    <include refid="Base_Column_List" />
     from grop
-    where grop_name like concat(#{gropId,jdbcType=VARCHAR},'%')
+    where grop_name like concat(#{searchName,jdbcType=VARCHAR},"%")
   </select>
 
-  <!--  根据群名和id进行查找-->
-  <select id="selectByIdOrName" parameterType="com.shixun.funchat.entity.ChatGroup" resultMap="BaseResultMap">
-    select grop_id,grop_name
+  <!-- 选择性查找 -->
+  <select id="selectBySelective" parameterType="com.shixun.funchat.entity.ChatGroup" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
     from grop
     <where>
-      <if test="gropId  !=null and gropId  !=''">
-        grop_id like concat(#{gropId,jdbcType=INTEGER},'%')
+      <if test="gropId != null">
+        and grop_id = #{gropId,jdbcType=INTEGER}
       </if>
-      <if test="gropName !=null and gropName !=''">
-        grop_name like concat(#{gropName,jdbcType=VARCHAR},'%')
+      <if test="gropName != null">
+        and grop_name = #{gropName,jdbcType=VARCHAR}
+      </if>
+      <if test="sum != null">
+        and sum = #{sum,jdbcType=INTEGER}
+      </if>
+      <if test="gropType != null">
+        and grop_type = #{gropType,jdbcType=VARCHAR}
       </if>
     </where>
   </select>

@@ -15,74 +15,95 @@
 </head>
 <body>
 
-    <!-- page loading -->
+    <!-- 加载白屏 -->
     <div class="page-loading"></div>
-    <!-- ./ page loading -->
+    <!-- ./ 加载白屏 -->
 
-    <!-- call modal -->
-    <div class="modal call fade" id="call" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-zoom" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="call">
-                        <div class="call-background" style="background: url(./media/img/call-bg.png)"></div>
-                        <div>
-                            <figure class="mb-4 avatar avatar-xl">
-                                <img src="./media/img/women_avatar1.jpg" class="rounded-circle">
-                            </figure>
-                            <h4 class="text-center">Jennica Kindred calling ...</h4>
-                            <div class="action-button">
-                                <button type="button" class="btn btn-danger btn-floating btn-lg"
-                                        data-dismiss="modal">
-                                    <i class="ti-close"></i>
-                                </button>
-                                <button type="button" class="btn btn-success btn-pulse btn-floating btn-lg">
-                                    <i class="fa fa-phone"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ./ call modal -->
-
-    <!-- add friends modal -->
+    <!-- 添加好友模态框 -->
     <div class="modal fade" id="addFriends" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
-
         <div class="modal-dialog modal-dialog-centered modal-dialog-zoom" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">
-                        <i class="ti-user"></i> Add Friends
+                        <i class="ti-user"></i> 添加好友
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <i class="ti-close"></i>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="alert alert-info">Send invitations to friends.</div>
+                    <div class="alert alert-info">输入好友名称</div>
                     <form>
-                        <div class="form-group">
-                            <label for="emails" class="col-form-label">Email addresses</label>
-                            <input type="text" class="form-control" id="emails">
-                        </div>
-                        <div class="form-group">
-                            <label for="message" class="col-form-label">Invitation message</label>
-                            <textarea class="form-control" id="message"></textarea>
+                        <div class="form-row align-items-center">
+                            <div class="col">
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="col-auto">
+                                <button type="button" data-modal-button="search" class="btn btn-primary">搜索</button>
+                            </div>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Submit</button>
+                    <ul class="list-group list-group-flush">
+                        <!-- 列表内容动态添加 -->
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-    <!-- ./ add friends modal -->
+    <!-- ./ 添加好友模态框 -->
+
+    <!-- 加入群聊模态框 -->
+    <div class="modal fade" id="joinGroups" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered modal-dialog-zoom" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="ti-comment-alt"></i> 加入群聊
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="ti-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info">输入群聊名称</div>
+                    <form>
+                        <div class="form-row align-items-center">
+                            <div class="col">
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="col-auto">
+                                <button type="button" data-modal-button="search" class="btn btn-primary">搜索</button>
+                            </div>
+                        </div>
+                    </form>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="row align-items-center justify-content-center">
+                                <div class="avatar-group">
+                                    <figure class="avatar avatar-lg">
+                                    <span class="avatar-title bg-warning rounded-circle">
+                                        A
+                                    </span>
+                                    </figure>
+                                </div>
+                                <div class="col-5">
+                                    <h4>群聊1</h4>
+                                    <p>ID:000, 人数:1</p>
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-primary">加入</button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./ 加入群聊模态框 -->
 
     <!-- new group modal -->
     <div class="modal fade" id="newGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -145,117 +166,7 @@
     </div>
     <!-- ./ new group modal -->
 
-    <!-- setting modal -->
-    <div class="modal fade" id="settingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-zoom" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">
-                        <i class="ti-settings"></i> Settings
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i class="ti-close"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#account" role="tab"
-                               aria-controls="account" aria-selected="true">Account</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#notification" role="tab"
-                               aria-controls="notification" aria-selected="false">Notification</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
-                               aria-selected="false">Security</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane show active" id="account" role="tabpanel">
-                            <div class="form-item custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" checked id="customSwitch1">
-                                <label class="custom-control-label" for="customSwitch1">Allow connected
-                                    contacts</label>
-                            </div>
-                            <div class="form-item custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" checked id="customSwitch2">
-                                <label class="custom-control-label" for="customSwitch2">Confirm message
-                                    requests</label>
-                            </div>
-                            <div class="form-item custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" checked id="customSwitch3">
-                                <label class="custom-control-label" for="customSwitch3">Profile privacy</label>
-                            </div>
-                            <div class="form-item custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="customSwitch4">
-                                <label class="custom-control-label" for="customSwitch4">Developer mode
-                                    options</label>
-                            </div>
-                            <div class="form-item custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" checked id="customSwitch5">
-                                <label class="custom-control-label" for="customSwitch5">Two-step security
-                                    verification</label>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="notification" role="tabpanel">
-                            <div class="form-item custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" checked id="customSwitch6">
-                                <label class="custom-control-label" for="customSwitch6">Allow mobile
-                                    notifications</label>
-                            </div>
-                            <div class="form-item custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="customSwitch7">
-                                <label class="custom-control-label" for="customSwitch7">Notifications from your
-                                    friends</label>
-                            </div>
-                            <div class="form-item custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="customSwitch8">
-                                <label class="custom-control-label" for="customSwitch8">Send notifications by
-                                    email</label>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="contact" role="tabpanel">
-                            <div class="form-item custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="customSwitch9">
-                                <label class="custom-control-label" for="customSwitch9">Suggest changing passwords
-                                    every month.</label>
-                            </div>
-                            <div class="form-item custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" checked id="customSwitch10">
-                                <label class="custom-control-label" for="customSwitch10">Let me know about
-                                    suspicious entries to your account</label>
-                            </div>
-                            <div class="form-item">
-                                <p>
-                                    <a data-toggle="collapse" href="#collapseExample" role="button"
-                                       aria-expanded="false" aria-controls="collapseExample">
-                                        <span class="ti-plus btn-icon"></span> Security Questions
-                                    </a>
-                                </p>
-                                <div class="collapse" id="collapseExample">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Question 1">
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Question 2">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ./ setting modal -->
-
-    <!-- edit profile modal -->
+    <!-- 编辑个人资料模态框 -->
     <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-zoom" role="document">
@@ -381,18 +292,60 @@
             </div>
         </div>
     </div>
-    <!-- ./ edit profile modal -->
+    <!-- ./ 编辑个人资料模态框 -->
 
-    <!-- layout -->
+    <!-- updateGroupInfo Modal -->
+    <div class="modal fade" id="updateGroupInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-zoom">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">
+                        修改群组信息
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+
+                </div>
+                <div class="modal-body">
+                    <!--form-->
+                    <div class="container">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <form id="get_new_groupname">
+                                    <div class="form-group">
+                                        <label for="upgrade_groupName">groupName</label>
+                                        <input type="text" class="form-control" id="upgrade_groupName"
+                                               placeholder="请输入修改的groupName">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--form-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button id="update_group_info_btn"  type="button" class="btn btn-primary" >
+                        提交更改
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+
+    <!-- 整体布局 -->
     <div class="layout">
 
-        <!-- navigation -->
+        <!-- 左侧导航栏 -->
         <nav class="navigation">
             <div class="nav-group">
                 <ul>
                     <li>
                         <a class="logo" href="#">
-                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  width="33.004px" height="33.003px" viewBox="0 0 33.004 33.003"
                                  style="enable-background:new 0 0 33.004 33.003;"
@@ -408,21 +361,6 @@
                                     <circle cx="21.168" cy="16.043" r="1.833"/>
                                 </g>
                             </g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
-                                <g></g>
                         </svg>
                         </a>
                     </li>
@@ -442,27 +380,22 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" data-toggle="modal" data-target="#settingModal">
-                            <i class="ti-settings"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="./login.html">
+                        <a href="/logout">
                             <i class="ti-power-off"></i>
                         </a>
                     </li>
                 </ul>
             </div>
         </nav>
-        <!-- ./ navigation -->
+        <!-- ./ 左侧导航栏 -->
 
-        <!-- content -->
+        <!-- 内容 -->
         <div class="content">
 
-            <!-- sidebar group -->
+            <!-- 右侧窗口组 -->
             <div class="sidebar-group">
 
-                <!-- Chats sidebar -->
+                <!-- 聊天列表 -->
                 <div id="chats" class="sidebar active">
                     <header>
                         <span>聊天</span>
@@ -473,8 +406,8 @@
                                 </a>
                             </li>
                             <li class="list-inline-item">
-                                <a class="btn btn-light" data-toggle="tooltip" title="加入群聊" href="#"
-                                   data-navigation-target="friends">
+                                <a class="btn btn-light" href="#" data-toggle="tooltip" title="加入群聊"
+                                   data-my-toggle="modal" data-my-target="#joinGroups">
                                     <i class="ti-comment-alt"></i>
                                 </a>
                             </li>
@@ -533,9 +466,9 @@
                         </ul>
                     </div>
                 </div>
-                <!-- ./ Chats sidebar -->
+                <!-- ./ 聊天列表 -->
 
-                <!-- Friends sidebar -->
+                <!-- 好友列表 -->
                 <div id="friends" class="sidebar">
                     <header>
                         <span>好友</span>
@@ -557,7 +490,7 @@
                             <li class="list-group-item">
                                 <div class="avatar-group">
                                     <figure class="avatar">
-                                    <span class="avatar-title bg-warning bg-success rounded-circle">
+                                    <span class="avatar-title bg-success rounded-circle">
                                         A
                                     </span>
                                     </figure>
@@ -571,38 +504,11 @@
                                                 <i class="ti-more"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
+                                                <a href="#" class="dropdown-item">打开</a>
                                                 <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
-                                                <a href="#" class="dropdown-item">Delete</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="avatar-group">
-                                    <figure class="avatar">
-                                    <span class="avatar-title bg-warning bg-success rounded-circle">
-                                        B
-                                    </span>
-                                    </figure>
-                                </div>
-                                <div class="users-list-body">
-                                    <h5>好友2</h5>
-                                    <p>这是好友2</p>
-                                    <div class="users-list-action action-toggle">
-                                        <div class="dropdown">
-                                            <a data-toggle="dropdown" href="#">
-                                                <i class="ti-more"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Open</a>
-                                                <a href="#" data-navigation-target="contact-information"
-                                                   class="dropdown-item">Profile</a>
-                                                <a href="#" class="dropdown-item">Add to archive</a>
-                                                <a href="#" class="dropdown-item">Delete</a>
+                                                   class="dropdown-item">信息</a>
+                                                <a href="#" class="dropdown-item">退出</a>
+                                                <a href="#" class="dropdown-item">删除</a>
                                             </div>
                                         </div>
                                     </div>
@@ -611,12 +517,12 @@
                         </ul>
                     </div>
                 </div>
-                <!-- ./ Friends sidebar -->
+                <!-- ./ 好友列表 -->
 
             </div>
-            <!-- ./ sidebar group -->
+            <!-- ./ 右侧窗口组 -->
 
-            <!-- chat -->
+            <!-- 聊天区域 -->
             <div class="chat">
                 <div class="chat-header">
                     <div class="chat-header-user">
@@ -634,40 +540,12 @@
                             </small>
                         </div>
                     </div>
-                    <div class="chat-header-action">
-                        <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <a href="#" class="btn btn-success">
-                                    <i class="fa fa-phone" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#" class="btn btn-secondary">
-                                    <i class="fa fa-video-camera" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#" class="btn btn-secondary" data-toggle="dropdown">
-                                    <i class="ti-more"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="#" data-navigation-target="contact-information"
-                                       class="dropdown-item">信息</a>
-                                    <a href="#" class="dropdown-item">退出</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a href="#" class="dropdown-item">删除</a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
-                <div class="chat-body"> <!-- .no-message -->
-                    <!--
+                <div class="chat-body no-message"> <!-- .no-message -->
                     <div class="no-message-container">
                         <i class="fa fa-comments-o"></i>
-                        <p>Select a chat to read messages</p>
+                        <p>选择一个群聊</p>
                     </div>
-                    -->
                     <div class="messages">
                         <div class="message-item outgoing-message">
                             <div class="message-content">
@@ -746,29 +624,26 @@
                     </div>
                 </div>
                 <div class="chat-footer">
-                    <form action="">
-                        <input type="text" class="form-control" placeholder="Recipient's username"
+                    <form>
+                        <input type="text" class="form-control" placeholder="在此处输入消息"
                                aria-label="Recipient's username" aria-describedby="button-addon2">
                         <div class="form-buttons">
-                            <button class="btn btn-light btn-floating" type="button">
-                                <i class="fa fa-paperclip"></i>
-                            </button>
-                            <button class="btn btn-light btn-floating" type="button">
-                                <i class="fa fa-microphone"></i>
-                            </button>
-                            <button class="btn btn-primary btn-floating" type="submit">
+                            <button class="btn btn-primary btn-floating" type="button">
                                 <i class="fa fa-send"></i>
                             </button>
                         </div>
                     </form>
                 </div>
             </div>
-            <!-- ./ chat -->
+            <!-- ./ 聊天区域 -->
 
+            <!-- 左侧窗口组 -->
             <div class="sidebar-group">
+
+                <!-- 信息列表 -->
                 <div id="contact-information" class="sidebar">
                     <header>
-                        <span>About</span>
+                        <span>信息</span>
                         <ul class="list-inline">
                             <li class="list-inline-item">
                                 <a href="#" class="btn btn-light sidebar-close">
@@ -778,170 +653,19 @@
                         </ul>
                     </header>
                     <div class="sidebar-body">
-                        <div class="pl-4 pr-4 text-center">
-                            <figure class="avatar avatar-state-danger avatar-xl mb-4">
-                                <img src="./media/img/women_avatar5.jpg" class="rounded-circle">
-                            </figure>
-                            <h5 class="text-primary">Frans Hanscombe</h5>
-                            <p class="text-muted">Last seen: Today</p>
-                        </div>
-                        <hr>
-                        <div class="pl-4 pr-4">
-                            <h6>About</h6>
-                            <p class="text-muted">I love reading, traveling and discovering new things. You need to
-                                be happy in life.</p>
-                        </div>
-                        <hr>
-                        <div class="pl-4 pr-4">
-                            <h6>Phone</h6>
-                            <p class="text-muted">(555) 555 55 55</p>
-                        </div>
-                        <hr>
-                        <div class="pl-4 pr-4">
-                            <h6>Media</h6>
-                            <div class="files">
-                                <ul class="list-inline">
-                                    <li class="list-inline-item">
-                                        <a href="#">
-                                            <figure class="avatar avatar-lg">
-                                        <span class="avatar-title bg-warning">
-                                            <i class="fa fa-file-pdf-o"></i>
-                                        </span>
-                                            </figure>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a href="#">
-                                            <figure class="avatar avatar-lg">
-                                                <img src="./media/img/women_avatar1.jpg">
-                                            </figure>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a href="#">
-                                            <figure class="avatar avatar-lg">
-                                                <img src="./media/img/women_avatar3.jpg">
-                                            </figure>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a href="#">
-                                            <figure class="avatar avatar-lg">
-                                                <img src="./media/img/women_avatar4.jpg">
-                                            </figure>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a href="#">
-                                            <figure class="avatar avatar-lg">
-                                        <span class="avatar-title bg-success">
-                                            <i class="fa fa-file-excel-o"></i>
-                                        </span>
-                                            </figure>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a href="#">
-                                            <figure class="avatar avatar-lg">
-                                        <span class="avatar-title bg-info">
-                                            <i class="fa fa-file-text-o"></i>
-                                        </span>
-                                            </figure>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="pl-4 pr-4">
-                            <h6>City</h6>
-                            <p class="text-muted">Germany / Berlin</p>
-                        </div>
-                        <hr>
-                        <div class="pl-4 pr-4">
-                            <h6>Website</h6>
-                            <p>
-                                <a href="#">www.franshanscombe.com</a>
-                            </p>
-                        </div>
-                        <hr>
-                        <div class="pl-4 pr-4">
-                            <h6>Social Links</h6>
-                            <ul class="list-inline social-links">
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn btn-sm btn-floating btn-facebook">
-                                        <i class="fa fa-facebook"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn btn-sm btn-floating btn-twitter">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn btn-sm btn-floating btn-dribbble">
-                                        <i class="fa fa-dribbble"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn btn-sm btn-floating btn-whatsapp">
-                                        <i class="fa fa-whatsapp"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn btn-sm btn-floating btn-linkedin">
-                                        <i class="fa fa-linkedin"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn btn-sm btn-floating btn-google">
-                                        <i class="fa fa-google"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn btn-sm btn-floating btn-behance">
-                                        <i class="fa fa-behance"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#" class="btn btn-sm btn-floating btn-instagram">
-                                        <i class="fa fa-instagram"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <hr>
-                        <div class="pl-4 pr-4">
-                            <div class="form-group">
-                                <div class="form-item custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" id="customSwitch11">
-                                    <label class="custom-control-label" for="customSwitch11">Block</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="form-item custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" checked=""
-                                           id="customSwitch12">
-                                    <label class="custom-control-label" for="customSwitch12">Mute</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="form-item custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" id="customSwitch13">
-                                    <label class="custom-control-label" for="customSwitch13">Get
-                                        notification</label>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- 内容动态生成 -->
                     </div>
                 </div>
+                <!-- ./ 信息列表 -->
+
             </div>
+            <!-- ./ 左侧窗口组 -->
 
         </div>
-        <!-- ./ content -->
+        <!-- ./ 内容 -->
 
     </div>
-    <!-- ./ layout -->
+    <!-- ./ 整体布局 -->
 
     <!-- JQuery -->
     <script src="/js/jquery-3.4.1.min.js"></script>
@@ -955,7 +679,7 @@
     <!-- Funchat -->
     <script src="/js/funchat.js"></script>
 
-    <!-- Funchat -->
+    <!-- Index -->
     <script src="/js/index.js"></script>
 </body>
 </html>

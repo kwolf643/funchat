@@ -55,9 +55,9 @@ public class GroupController {
             //函数选择
             switch (json_func) {
                 case "searchGroup": {
-                    String groupName = jsonObject.getString("groupName");
-                    if (StringUtils.isNotBlank(groupName)) {
-                        List<ChatGroup> chatGroups = groupService.searchChatGroup(groupName);
+                    String searchName = jsonObject.getString("searchIdOrName");
+                    if (StringUtils.isNotBlank(searchName)) {
+                        List<ChatGroup> chatGroups = groupService.searchChatGroup(searchName);
                         map.put("return", chatGroups);
                         throw new MyException(MyExceptionType.Success);
                     } else

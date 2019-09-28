@@ -8,12 +8,14 @@ import com.shixun.funchat.entity.GroupStructure;
 import com.shixun.funchat.entity.GroupStructureKey;
 import com.shixun.funchat.entity.User;
 import com.shixun.funchat.service.GroupService;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,12 +32,27 @@ public class GroupServiceImpl implements GroupService {
     /**
      * 搜索群聊
      *
-     * @param groupName 群聊名称
+     * @param s 群聊名称或ID
      * @return 群聊数组
      */
     @Override
-    public List<ChatGroup> searchChatGroup(String groupName) {
-        return chatGroupMapper.selectChatGroupByGroupName(groupName);
+    @Transactional
+    public List<ChatGroup> searchChatGroup(String s) {
+        List<ChatGroup> groups = new ArrayList<>();
+        if (StringUtils.isBlank(s))
+            return groups;
+        //根据名称搜索
+        groups = chatGroupMapper.selectByGroupName(s);
+        try {
+            //根据ID搜索
+            Integer id = Integer.valueOf(s);
+            ChatGroup chatGroup = new ChatGroup();
+            chatGroup.setGropId(id);
+            groups.addAll(chatGroupMapper.selectBySelective(chatGroup));
+        } catch (Exception e) {
+            return groups;
+        }
+        return groups;
     }
 
     /**
@@ -50,6 +67,8 @@ public class GroupServiceImpl implements GroupService {
     public boolean joinChatGroup(Integer userId, Integer groupId) {
         ChatGroup chatGroup = chatGroupMapper.selectByPrimaryKey(groupId);
         if (chatGroup == null) //群聊不存在
+            return false;
+        if (hasMember(groupId, userId)) //已经是成员
             return false;
         //群聊人数+1
         chatGroup.setSum(chatGroup.getSum() + 1);
@@ -230,7 +249,7 @@ public class GroupServiceImpl implements GroupService {
     @Override
     @Transactional
     public boolean removeFromChatGroupByOwner(Integer ownerId, Integer removeId, Integer groupId) {
-        if(ownerId.equals(removeId))
+        if (ownerId.equals(removeId))
             return false;
         ChatGroup chatGroup = chatGroupMapper.selectByPrimaryKey(groupId);
         if (chatGroup == null) //群聊不存在
@@ -268,13 +287,6 @@ public class GroupServiceImpl implements GroupService {
         //更新群表
         chatGroupMapper.updateByPrimaryKeySelective(chatGroup);
         return true;
-    }
-
-    //查找群
-    @Override
-    public List<ChatGroup> search(ChatGroup group) {
-        List<ChatGroup> groups = chatGroupMapper.selectByIdOrName(group);
-        return groups;
     }
 
 }

@@ -56,7 +56,7 @@ public interface FriendService {
      * @param userId2 用户ID
      * @return null 无记录 其他 找到的好友记录
      */
-    Friend findFriendRecord(Integer userId1,Integer userId2);
+    Friend findFriendRecord(Integer userId1, Integer userId2);
 
     /**
      * 判断是否是好友
@@ -65,14 +65,32 @@ public interface FriendService {
      * @param userId2 用户ID
      * @return true 是好友 false 不是好友
      */
-    boolean isFriend(Integer userId1,Integer userId2);
+    boolean isFriend(Integer userId1, Integer userId2);
 
     /**
      * 判断是否是发送好友申请
      *
      * @param userId1 用户ID
      * @param userId2 用户ID
-     * @return true 是好友 false 不是好友
+     * @return true 已发送申请 false 没有发送申请
      */
-    boolean isWantFriend(Integer userId1,Integer userId2);
+    boolean isWantFriend(Integer userId1, Integer userId2);
+
+    /**
+     * 接受好友
+     *
+     * @param userId   用户ID
+     * @param friendId 好友ID
+     * @return true 接受成功 false 失败
+     */
+    boolean acceptFriend(Integer userId, Integer friendId);
+
+    /**
+     * 拒绝好友
+     *
+     * @param userId   用户ID
+     * @param friendId 好友ID
+     * @return true 拒绝成功 false 失败
+     */
+    boolean rejectFriend(Integer userId, Integer friendId);
 }
