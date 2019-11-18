@@ -44,7 +44,7 @@
             password = o.find("#password").val();
             telephone = o.find("#telephone").val();
             email = o.find("#email").val();
-            alert("123");
+            // alert("123");
             funChat.Utils.jsonAjax("/UserControlPublic", "post",
                 {func: "regist", username: username, password: password, telephone: telephone, mail: email},
                 {
